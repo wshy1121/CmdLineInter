@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-//#include <glib.h>
 #include "CmdLineInter.h"
 #include "CmdDeal.h"
 
@@ -14,7 +13,8 @@
  Return 0 if not found.
  ******************************************************************************/
 
-char *strstrip(char *s) {
+char *strstrip(char *s)
+{
     size_t size;
     char *end;
 
