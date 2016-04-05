@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "CmdDeal.h"
+#include "user_manager.h"
 
 
 extern FILE *rl_outstream;
@@ -67,6 +68,22 @@ static int exit(int argc, char **argv)
 	return 0;
 }
 
+static int listTraceInf(int argc, char **argv)
+{
+    IClientInf *clientInf = NULL;
+    std::string clientInfStr;
+    CUserManager::UserInfMap userInfMap;
+    CUserManager::instance()->getClientInfs(userInfMap);
+    CUserManager::UserInfMap::iterator iter = userInfMap.begin();     
+    for( ; iter != userInfMap.end(); ++iter)
+    {
+        clientInf = iter->second;
+        clientInf->formatInf(clientInfStr);
+        fprintf(rl_outstream, "%s\r\n", clientInfStr.c_str());
+        
+    }
+    return 0;
+}
 
 /******************************************************************************
  List of all console commands.
@@ -78,6 +95,7 @@ cmd_t cmd_list[] = {
     {"quit", (executable *) exit},
     {"$", SystemCall},
     {"cd", cd},
+    {"list", listTraceInf},
     {NULL, NULL}
 };
 
