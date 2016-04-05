@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include "CmdDeal.h"
 #include "user_manager.h"
-
+#include "time_calc.h"
 
 extern FILE *rl_outstream;
 
@@ -85,6 +85,20 @@ static int listTraceInf(int argc, char **argv)
     return 0;
 }
 
+static int DispTraceInfStr(int argc, char **argv)
+{
+    if (argc != 2)
+    {
+        fprintf(rl_outstream, "usage: disp clientId\r\n");
+        return 0;
+    }
+
+    int clientId = atoi(argv[1]);
+    std::string traceInfStr;
+    CTimeCalcManager::instance()->getTraceInfStr(clientId, traceInfStr);
+    fprintf(rl_outstream, "%s\r\n", traceInfStr.c_str());
+    return 0;
+}
 /******************************************************************************
  List of all console commands.
  ******************************************************************************/
@@ -96,6 +110,7 @@ cmd_t cmd_list[] = {
     {"$", SystemCall},
     {"cd", cd},
     {"list", listTraceInf},
+    {"disp", DispTraceInfStr},
     {NULL, NULL}
 };
 
