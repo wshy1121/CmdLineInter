@@ -16,11 +16,8 @@ static int help(int argc, char **argv)
 {
     if (argc < 2) {
         fprintf(rl_outstream, "The commands already implemented are:\r\n");
-        fprintf(rl_outstream, "help:\tShow all command and relate info\r\n");
-        fprintf(rl_outstream, "q:\tExit\r\n");
-        fprintf(rl_outstream, "quit:\tExit\r\n");
-        fprintf(rl_outstream, "exit:\tExit\r\n");
-        fprintf(rl_outstream, "cd:\tEnter specified directory\r\n");
+        fprintf(rl_outstream, "list:\t list the clients info\r\n");
+        fprintf(rl_outstream, "disp:\t display the detail client inf\r\n");
         fprintf(rl_outstream, "$:\tRun system command;for example: $ ls\r\n");
     } else {
         int i;
