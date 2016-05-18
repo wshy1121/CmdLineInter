@@ -67,6 +67,7 @@ static int exit(int argc, char **argv)
 
 static int listTraceInf(int argc, char **argv)
 {
+    fprintf(rl_outstream, "\r\n");
     IClientInf *clientInf = NULL;
     std::string clientInfStr;
     CUserManager::UserInfMap userInfMap;
